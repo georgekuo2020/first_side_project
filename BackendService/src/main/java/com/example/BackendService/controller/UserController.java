@@ -21,7 +21,7 @@ public class UserController {
 
     @ResponseBody
     @Operation(summary = "列表", description = "取得會員列表")
-    @GetMapping("/all")
+    @GetMapping("/list")
     protected Iterable<User> list(){
         return userService.findAll();
     }
