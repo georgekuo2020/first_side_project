@@ -1,34 +1,28 @@
 package com.example.BackendService.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
+
+@Data
+@Table(name = "user")
 @Entity
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
 
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @Column(nullable = false, length = 32)
+    private String id;
+
+    @Column(name = "name", nullable = false)
     private String name;
 
-    public User() {
-    }
+    @Column(name = "email", nullable = false)
+    private String email;
 
-    public int getId() {
-        return id;
-    }
+    @Column(name = "is_delete")
+    private int isDelete;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
